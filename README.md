@@ -694,9 +694,22 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact & Support
 
-- **GitHub Issues:** [Report bugs or request features](https://github.com/yourusername/KameraYuzTanima/issues)
+- **GitHub Issues:** [Report bugs or request features](https://github.com/mehmetdogandev/KameraYuzTanima/issues)
 - **Documentation:** Check the `docs/` folder for detailed guides
 - **Community:** Join discussions in Issues section
+
+---
+
+## 👨‍💻 Developer
+
+<div align="center">
+  <img src="https://avatars.githubusercontent.com/u/115467130?v=4" alt="Mehmet Doğan" width="100" height="100" style="border-radius: 50%;" />
+  
+  **Mehmet Doğan**
+  
+  [![GitHub](https://img.shields.io/badge/GitHub-mehmetdogandev-181717?style=flat&logo=github)](https://github.com/mehmetdogandev)
+  [![Email](https://img.shields.io/badge/Email-mehmetdogan.dev@gmail.com-D14836?style=flat&logo=gmail&logoColor=white)](mailto:mehmetdogan.dev@gmail.com)
+</div>
 
 ---
 
