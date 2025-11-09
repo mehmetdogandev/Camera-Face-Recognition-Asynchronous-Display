@@ -95,6 +95,12 @@ static const char *_STREAM_PART = "Content-Type: image/jpeg\r\nContent-Length: %
 httpd_handle_t stream_httpd = NULL;
 httpd_handle_t camera_httpd = NULL;
 
+// External functions for OLED display
+extern int counterLeft;
+extern int counterRight;
+extern int counterBoth;
+extern void updateDisplay();
+
 #if CONFIG_ESP_FACE_DETECT_ENABLED
 
 static int8_t detection_enabled = 0;
@@ -1114,6 +1120,77 @@ static esp_err_t win_handler(httpd_req_t *req) {
   return httpd_resp_send(req, NULL, 0);
 }
 
+static esp_err_t screen_handler(httpd_req_t *req) {
+  char buf[100];
+  int ret, remaining = req->content_len;
+
+  if (remaining > sizeof(buf) - 1) {
+    ESP_LOGE(TAG, "Content too long");
+    httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Content too long");
+    return ESP_FAIL;
+  }
+
+  ret = httpd_req_recv(req, buf, remaining);
+  if (ret <= 0) {
+    if (ret == HTTPD_SOCK_ERR_TIMEOUT) {
+      httpd_resp_send_408(req);
+    }
+    return ESP_FAIL;
+  }
+  buf[ret] = '\0';
+
+  // Parse POST data: data=X&status=Y
+  char data_str[10] = {0};
+  char status_str[10] = {0};
+  
+  if (httpd_query_key_value(buf, "data", data_str, sizeof(data_str)) != ESP_OK ||
+      httpd_query_key_value(buf, "status", status_str, sizeof(status_str)) != ESP_OK) {
+    ESP_LOGE(TAG, "Invalid POST data format");
+    httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Invalid data format. Use: data=X&status=Y");
+    return ESP_FAIL;
+  }
+
+  int data = atoi(data_str);
+  int status = atoi(status_str);
+
+  ESP_LOGI(TAG, "Screen Update - Data: %d, Status: %d", data, status);
+
+  // Update counters based on data and status
+  if (data == 0) {  // SOL
+    if (status == 0) {
+      counterLeft++;
+    } else if (status == 1) {
+      counterLeft--;
+    }
+  } else if (data == 1) {  // SAĞ
+    if (status == 0) {
+      counterRight++;
+    } else if (status == 1) {
+      counterRight--;
+    }
+  } else if (data == 2) {  // İKİSİ
+    if (status == 0) {
+      counterBoth++;
+    } else if (status == 1) {
+      counterBoth--;
+    }
+  }
+
+  // Update the OLED display
+  updateDisplay();
+
+  // Send response
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+  httpd_resp_set_type(req, "application/json");
+  
+  char response[100];
+  snprintf(response, sizeof(response), 
+           "{\"status\":\"ok\",\"left\":%d,\"right\":%d,\"both\":%d}", 
+           counterLeft, counterRight, counterBoth);
+  
+  return httpd_resp_send(req, response, strlen(response));
+}
+
 static esp_err_t index_handler(httpd_req_t *req) {
   httpd_resp_set_type(req, "text/html");
   httpd_resp_set_hdr(req, "Content-Encoding", "gzip");
@@ -1273,6 +1350,19 @@ void startCameraServer() {
 #endif
   };
 
+  httpd_uri_t screen_uri = {
+    .uri = "/screen",
+    .method = HTTP_POST,
+    .handler = screen_handler,
+    .user_ctx = NULL
+#ifdef CONFIG_HTTPD_WS_SUPPORT
+    ,
+    .is_websocket = true,
+    .handle_ws_control_frames = false,
+    .supported_subprotocol = NULL
+#endif
+  };
+
   ra_filter_init(&ra_filter, 20);
 
 #if CONFIG_ESP_FACE_RECOGNITION_ENABLED
@@ -1294,6 +1384,7 @@ void startCameraServer() {
     httpd_register_uri_handler(camera_httpd, &greg_uri);
     httpd_register_uri_handler(camera_httpd, &pll_uri);
     httpd_register_uri_handler(camera_httpd, &win_uri);
+    httpd_register_uri_handler(camera_httpd, &screen_uri);
   }
 
   config.server_port += 1;
