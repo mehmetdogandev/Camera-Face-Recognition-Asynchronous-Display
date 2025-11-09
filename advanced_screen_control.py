@@ -6,7 +6,7 @@ import time
 import random
 
 # ESP32-CAM IP adresi
-ESP32_IP = "192.168.1.100"  # BURAYA KENDI IP ADRESİNİZİ YAZIN
+ESP32_IP = "10.64.220.72"  # BURAYA KENDI IP ADRESİNİZİ YAZIN
 SCREEN_URL = f"http://{ESP32_IP}/screen"
 
 class ScreenController:

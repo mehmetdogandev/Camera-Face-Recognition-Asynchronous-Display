@@ -5,7 +5,7 @@ import requests
 import time
 
 # ESP32-CAM IP adresi (seri monitörden alacaksınız)
-ESP32_IP = ""  # BURAYA KENDI IP ADRESİNİZİ YAZIN
+ESP32_IP = "10.64.220.72"  # BURAYA KENDI IP ADRESİNİZİ YAZIN
 SCREEN_URL = f"http://{ESP32_IP}/screen"
 
 def update_screen(data, status):
