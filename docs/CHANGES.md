@@ -376,9 +376,11 @@ httpd_register_uri_handler(camera_httpd, &screen_uri);
 
 ## 📄 New Files
 
-### 1. `test_screen.py` - Basic Test Script
+### 1. `pythonscripts/test_screen.py` - Basic Test Script
 
 **Purpose**: Simple testing of OLED API functionality.
+
+**Location**: `pythonscripts/` directory
 
 **Key Features**:
 ```python
@@ -414,15 +416,19 @@ def update_screen(data, status):
 
 **Usage**:
 ```bash
+# Navigate to pythonscripts directory
+cd pythonscripts
 # Update IP address in file
 python test_screen.py
 ```
 
 ---
 
-### 2. `advanced_screen_control.py` - Production Controller
+### 2. `pythonscripts/advanced_screen_control.py` - Production Controller
 
 **Purpose**: Reusable controller class for integration into projects.
+
+**Location**: `pythonscripts/` directory
 
 **Class Structure**:
 
@@ -511,6 +517,8 @@ class ScreenController:
 **Integration Example**:
 
 ```python
+import sys
+sys.path.append('pythonscripts')
 from advanced_screen_control import ScreenController
 
 # Initialize
@@ -529,7 +537,7 @@ if both_faces_detected:
 
 ---
 
-### 3. `requirements.txt` - Python Dependencies
+### 3. `pythonscripts/requirements.txt` - Python Dependencies
 
 **Content**:
 ```
@@ -538,8 +546,11 @@ requests>=2.28.0
 
 **Purpose**: Specify Python package requirements.
 
+**Location**: `pythonscripts/` directory
+
 **Installation**:
 ```bash
+cd pythonscripts
 pip install -r requirements.txt
 ```
 
@@ -549,11 +560,28 @@ pip install -r requirements.txt
 
 All located in `docs/` directory:
 
-- **`SCREEN_FEATURES.md`**: Complete API reference and feature guide
-- **`INSTALLATION.md`**: Step-by-step setup instructions
-- **`WIRING.md`**: Hardware connection diagrams
-- **`CHANGES.md`**: This file - technical documentation
-- **`README.md`**: Documentation index
+- **`docs/SCREEN_FEATURES.md`**: Complete API reference and feature guide
+- **`docs/INSTALLATION.md`**: Step-by-step setup instructions
+- **`docs/WIRING.md`**: Hardware connection diagrams
+- **`docs/CHANGES.md`**: This file - technical documentation
+- **`docs/README.md`**: Documentation index
+
+### 5. Project Organization
+
+**New Structure**:
+```
+KameraYuzTanima/
+├── KameraYuzTanima.ino
+├── app_httpd.cpp
+├── camera_index.h
+├── .gitignore
+├── README.md
+├── docs/              # All documentation
+└── pythonscripts/     # Python integration tools
+    ├── test_screen.py
+    ├── advanced_screen_control.py
+    └── requirements.txt
+```
 
 ---
 
@@ -931,6 +959,10 @@ display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR);
 **HTTP API Tests**:
 
 ```python
+import sys
+sys.path.append('pythonscripts')
+import requests
+
 # Test increment
 response = requests.post(url, data={'data': 0, 'status': 0})
 assert response.status_code == 200

@@ -105,6 +105,7 @@ Visit `http://192.168.1.100` to see the camera stream
 
 #### Via Python
 ```bash
+cd pythonscripts
 pip install -r requirements.txt
 python test_screen.py
 ```
@@ -355,6 +356,7 @@ status: 0-1 (operation)
 
 Run the basic test:
 ```bash
+cd pythonscripts
 python test_screen.py
 ```
 
@@ -365,6 +367,9 @@ This will test all three columns sequentially.
 Use the `ScreenController` class for your projects:
 
 ```python
+# Add pythonscripts to path or run from that directory
+import sys
+sys.path.append('pythonscripts')
 from advanced_screen_control import ScreenController
 
 # Initialize controller
@@ -432,6 +437,7 @@ cv2.destroyAllWindows()
 
 Run the advanced script for interactive testing:
 ```bash
+cd pythonscripts
 python advanced_screen_control.py
 ```
 
@@ -602,21 +608,24 @@ If you're still stuck:
 ```
 KameraYuzTanima/
 │
-├── KameraYuzTanima.ino        # Main Arduino sketch
+├── KameraYuzTanima.ino         # Main Arduino sketch
 ├── app_httpd.cpp               # Web server and API handlers
 ├── camera_index.h              # Web interface HTML (gzipped)
+├── .gitignore                  # Git ignore rules
 │
-├── test_screen.py              # Basic Python test script
-├── advanced_screen_control.py  # Advanced Python controller
-├── requirements.txt            # Python dependencies
+├── README.md                   # Main project documentation (English)
 │
-├── README.md                   # This file (English)
+├── docs/                       # Complete documentation
+│   ├── README.md               # Documentation index
+│   ├── SCREEN_FEATURES.md      # Feature guide & API reference
+│   ├── INSTALLATION.md         # Installation guide
+│   ├── WIRING.md               # Wiring diagrams & hardware
+│   └── CHANGES.md              # Technical changes & code docs
 │
-└── docs/                       # Documentation folder
-    ├── README_SCREEN.md        # Feature guide (Turkish)
-    ├── KURULUM.md              # Installation guide (Turkish)
-    ├── BAGLANTI_SEMASI.md      # Wiring diagrams (Turkish)
-    └── DEGISIKLIKLER.md        # Change log (Turkish)
+└── pythonscripts/              # Python integration scripts
+    ├── test_screen.py          # Basic test script
+    ├── advanced_screen_control.py  # Advanced controller
+    └── requirements.txt        # Python dependencies
 ```
 
 ---

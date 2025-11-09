@@ -406,9 +406,10 @@ If you want to use Python scripts for testing:
 
 ### Step 2: Install Requirements
 
-Open terminal/command prompt in project directory:
+Navigate to pythonscripts directory and install:
 
 ```bash
+cd pythonscripts
 pip install -r requirements.txt
 ```
 
@@ -419,7 +420,7 @@ pip install requests
 
 ### Step 3: Update IP Address
 
-Edit `test_screen.py` and `advanced_screen_control.py`:
+Edit `pythonscripts/test_screen.py` and `pythonscripts/advanced_screen_control.py`:
 
 ```python
 ESP32_IP = "192.168.1.100"  # Change to your IP
@@ -428,6 +429,7 @@ ESP32_IP = "192.168.1.100"  # Change to your IP
 ### Step 4: Run Test Script
 
 ```bash
+cd pythonscripts
 python test_screen.py
 ```
 

@@ -102,9 +102,10 @@ Welcome to the comprehensive documentation for the ESP32-CAM OLED Screen Control
    - Test with Python scripts
    - Understand features
 
-4. **Finally:** Test with scripts in root directory
-   - Run `test_screen.py`
-   - Try `advanced_screen_control.py`
+4. **Finally:** Test with scripts in pythonscripts directory
+   - Navigate to `pythonscripts/` folder
+   - Run `python test_screen.py`
+   - Try `python advanced_screen_control.py`
    - Build your own integration
 
 ---
@@ -128,7 +129,7 @@ Welcome to the comprehensive documentation for the ESP32-CAM OLED Screen Control
    - I2C configuration
    - Performance considerations
 
-4. **Integration:** Check `advanced_screen_control.py`
+4. **Integration:** Check `pythonscripts/advanced_screen_control.py` examples
    - Python controller class
    - Face detection example
    - Best practices
@@ -441,8 +442,9 @@ Want to improve these docs? We welcome:
 ### Internal Links
 
 - **Main Project:** [README.md](../README.md)
-- **Test Scripts:** Root directory (`test_screen.py`, `advanced_screen_control.py`)
+- **Test Scripts:** `pythonscripts/` directory (`test_screen.py`, `advanced_screen_control.py`)
 - **Arduino Code:** Root directory (`KameraYuzTanima.ino`, `app_httpd.cpp`)
+- **Python Requirements:** `pythonscripts/requirements.txt`
 
 ---
 

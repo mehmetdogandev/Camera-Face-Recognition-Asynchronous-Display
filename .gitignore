@@ -1,7 +1,36 @@
-/*myenv
-*/myenv
-.env
+# Python virtual environments
 myenv/
-/myenv/*
-/myenv
-/pythonscripts/myenv/*
+venv/
+env/
+.env
+*.pyc
+__pycache__/
+.Python
+
+# Python scripts virtual environment
+pythonscripts/myenv/
+pythonscripts/venv/
+pythonscripts/env/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build files
+*.o
+*.a
+*.so
+*.exe
+
+# Arduino build artifacts
+build/
+*.bin
+*.elf
+*.hex

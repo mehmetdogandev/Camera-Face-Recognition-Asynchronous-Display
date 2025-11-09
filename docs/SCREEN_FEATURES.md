@@ -41,6 +41,7 @@ pip install requests>=2.28.0
 
 Or install from requirements.txt:
 ```bash
+cd pythonscripts
 pip install -r requirements.txt
 ```
 
@@ -237,6 +238,7 @@ fetch(url, {
 
 Run the basic test script:
 ```bash
+cd pythonscripts
 python test_screen.py
 ```
 
@@ -253,6 +255,9 @@ This script will:
 Use the `ScreenController` class for production code:
 
 ```python
+# Make sure to add pythonscripts to your path or run from that directory
+import sys
+sys.path.append('pythonscripts')
 from advanced_screen_control import ScreenController
 
 # Initialize controller with ESP32 IP
@@ -284,6 +289,8 @@ Here's a complete example integrating with OpenCV face detection:
 
 ```python
 import cv2
+import sys
+sys.path.append('pythonscripts')
 from advanced_screen_control import ScreenController
 
 # Setup
@@ -368,6 +375,7 @@ cv2.destroyAllWindows()
 Run the advanced script for interactive testing:
 
 ```bash
+cd pythonscripts
 python advanced_screen_control.py
 ```
 
