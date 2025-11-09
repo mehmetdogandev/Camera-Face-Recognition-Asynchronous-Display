@@ -4,3 +4,4 @@
 myenv/
 /myenv/*
 /myenv
+/pythonscripts/myenv/*

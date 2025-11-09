@@ -1,15 +1,15 @@
-# OLED Ekran Kontrol Sistemi
+# OLED Screen Control System
 
-Bu proje, ESP32-CAM üzerinde çalışan kamera uygulamasına OLED ekran kontrol özelliği ekler.
+This project adds OLED screen control functionality to the ESP32-CAM camera application.
 
-## 🎯 Özellikler
+## 🎯 Features
 
-- **3 Sütunlu Ekran**: SOL, SAĞ, İKİSİ
-- **HTTP POST API**: `/screen` endpoint'i ile ekranı güncelleme
-- **Anlık Güncelleme**: Her POST isteğinde ekran otomatik güncellenir
-- **Sayaç Sistemi**: Her sütun için artırma/azaltma özelliği
+- **3-Column Display**: LEFT, RIGHT, BOTH
+- **HTTP POST API**: Update screen via `/screen` endpoint
+- **Real-time Updates**: Screen automatically updates on each POST request
+- **Counter System**: Increment/decrement feature for each column
 
-## 📋 Gereksinimler
+## 📋 Requirements
 
 ### Arduino Kütüphaneleri
 Aşağıdaki kütüphaneleri Arduino IDE'de yüklemeniz gerekiyor:
