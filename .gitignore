@@ -1,0 +1,6 @@
+/*myenv
+*/myenv
+.env
+myenv/
+/myenv/*
+/myenv
